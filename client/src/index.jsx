@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-//import styless from '/Users/marcus/Code/you-may-like/public/styles.css'
+import '/Users/marcus/Code/you-may-like/public/styles.css'
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 
 class TestComp extends React.Component {
 
