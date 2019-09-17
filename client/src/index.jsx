@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import '../../public/styles.css'
+//import styless from '/Users/marcus/Code/you-may-like/public/styles.css'
 
 class TestComp extends React.Component {
 
@@ -51,14 +51,12 @@ class TestComp extends React.Component {
     })
   }
 
-  render() {
+  render() {    
     if (this.state.shoes.length > 0) {
     var items = this.state.shoes.map((elem, i) => {
-      return (
-        
-        
+      return (        
         <div className = 'item' key = {i}>
-          <img className = 'image' src = {elem.image}></img>
+          <img className = 'image' src = {elem.image}></img>          
           <span className = 'elemName'>{elem.name}</span>
           <span className = 'elemPrice'>{'$' + elem.price}</span>
           <span className = 'elemType'>{elem.type + ' Shoe'}</span>        
