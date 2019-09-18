@@ -14,7 +14,7 @@ class TestComp extends React.Component {
   }
 
   componentDidMount() {
-    $.ajax('http://you-may-like-dev.us-west-2.elasticbeanstalk.com/shoes', {      
+    $.ajax('http://localhost:1128/shoes', {      
       success: (data) => {
         console.log('data:', data);
         this.setState({
