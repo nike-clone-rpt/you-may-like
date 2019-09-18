@@ -21,26 +21,27 @@ class TestComp extends React.Component {
           shoes: data
         }, () => {
           let shoeIdArr = [];
-           for (let i = 0; i < this.state.shoes.length; i ++) {
-             shoeIdArr.push(this.state.shoes[i].id)
-           }
-           $.ajax('http://18.207.197.100:1121/api/recommendedImage', {
-             data: {shoesArr: [0,1,2,3,4,5,6,7,8,9]},
-             success: (bata) => {
-               for (let i = 0; i < bata.length; i ++) {
-                 
-                 this.state.shoes[i].image = bata[i];
-               }
-               this.setState({
-                 forceRerender: this.state.forceRerender + 1
-               }, () => {
-                 console.log('shoe state:', this.state.shoes)
-               })
-             },
-             error: (err) => {
-               console.log('inner ajax err', err);
-             }
-           })
+          for (let i = 0; i < this.state.shoes.length; i++) {
+            shoeIdArr.push(this.state.shoes[i].id)
+          }
+          $.ajax({
+            url: 'http://localhost:1121/api/recommendedImage',
+            data: { shoesArr: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
+            success: (bata) => {
+              for (let i = 0; i < bata.length; i++) {
+
+                this.state.shoes[i].image = bata[i];
+              }
+              this.setState({
+                forceRerender: this.state.forceRerender + 1
+              }, () => {
+                console.log('shoe state:', this.state.shoes)
+              })
+            },
+            error: (err) => {
+              console.log('inner ajax err', err);
+            }
+          })
         })
       },
       error: (err) => {
@@ -51,24 +52,24 @@ class TestComp extends React.Component {
 
   render() {
     if (this.state.shoes.length > 0) {
-    var items = this.state.shoes.map((elem, i) => {
-      return (
-        
-        
-        <div className = 'item' key = {i}>
-          <img className = 'image' src = {elem.image}></img>
-          <span className = 'elemName'>{elem.name}</span>
-          <span className = 'elemPrice'>{'$' + elem.price}</span>
-          <span className = 'elemType'>{elem.type + ' Shoe'}</span>        
-        </div>
-      )
-    })
-   }
+      var items = this.state.shoes.map((elem, i) => {
+        return (
+          <div className='item' key={i}>
+            <img className='image' src={elem.image}></img>
+            <span className='elemName'>{elem.name}</span>
+            <span className='elemPrice'>{'$' + elem.price}</span>
+            <span className='elemType'>{elem.type + ' Shoe'}</span>
+          </div>
+        )
+      })
+    }
     return (
-      <div>
-        <b className = 'boldText'>YOU MIGHT ALSO LIKE</b>
-        {items}
-      </div>
+ 
+        <div className='flexContainer'>
+          <p className='boldText'>YOU MIGHT ALSO LIKE</p>
+          {items}
+        </div>
+
     )
   }
 }

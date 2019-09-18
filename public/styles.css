@@ -33,7 +33,31 @@ body {
 }
 
 .boldText {
+  text-align: left;
   display: block;
+  top: -200px;
+  
+  font-weight: bold;
+}
+
+/* .flexParent {
+  
   position: relative;
-  top: -10px
+  width: 50%;
+  margin: auto;
+} */
+
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  position: relative;
+  overflow-x: scroll;
+  width: 50%;
+  margin: auto;
+  top: 50px
+}
+
+.flexParent {
+  width: 50%
 }
