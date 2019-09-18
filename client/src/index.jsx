@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import '/Users/marcus/Code/you-may-like/public/styles.css'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
-
+import '../../public/styles.css';
 
 class TestComp extends React.Component {
 
@@ -17,8 +14,7 @@ class TestComp extends React.Component {
   }
 
   componentDidMount() {
-    $.ajax({
-      url: 'http://localhost:1128/shoes',
+    $.ajax('http://you-may-like-dev.us-west-2.elasticbeanstalk.com/shoes', {      
       success: (data) => {
         console.log('data:', data);
         this.setState({
@@ -28,8 +24,7 @@ class TestComp extends React.Component {
            for (let i = 0; i < this.state.shoes.length; i ++) {
              shoeIdArr.push(this.state.shoes[i].id)
            }
-           $.ajax({
-             url: 'http://localhost:1121/api/recommendedImage',
+           $.ajax('http://18.207.197.100:1121/api/recommendedImage', {
              data: {shoesArr: [0,1,2,3,4,5,6,7,8,9]},
              success: (bata) => {
                for (let i = 0; i < bata.length; i ++) {
@@ -54,12 +49,14 @@ class TestComp extends React.Component {
     })
   }
 
-  render() {    
+  render() {
     if (this.state.shoes.length > 0) {
     var items = this.state.shoes.map((elem, i) => {
-      return (        
+      return (
+        
+        
         <div className = 'item' key = {i}>
-          <img className = 'image' src = {elem.image}></img>          
+          <img className = 'image' src = {elem.image}></img>
           <span className = 'elemName'>{elem.name}</span>
           <span className = 'elemPrice'>{'$' + elem.price}</span>
           <span className = 'elemType'>{elem.type + ' Shoe'}</span>        
