@@ -9,7 +9,17 @@ class TestComp extends React.Component {
     super(props)
     this.state = {
       shoes: [],
-      forceRerender: 0
+      forceRerender: 0,
+      images: ['https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage+(1).jpg',
+               'https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage+(2).jpg',
+               'https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage+(3).jpg',
+               'https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage+(4).jpg', 
+               'https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage+(5).jpg', 
+               'https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage+(6).jpg', 
+               'https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage+(7).jpg', 
+               'https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage+(8).jpg', 
+               'https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage+(9).jpg', 
+               'https://marcusshoebucket.s3-us-west-2.amazonaws.com/Webp.net-resizeimage.jpg']
     }
   }
 
@@ -24,24 +34,24 @@ class TestComp extends React.Component {
           for (let i = 0; i < this.state.shoes.length; i++) {
             shoeIdArr.push(this.state.shoes[i].id)
           }
-          $.ajax({
-            url: 'http://localhost:1121/api/recommendedImage',
-            data: { shoesArr: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
-            success: (bata) => {
-              for (let i = 0; i < bata.length; i++) {
+          // $.ajax({
+          //   url: 'http://localhost:1121/api/recommendedImage',
+          //   data: { shoesArr: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
+          //   success: (bata) => {
+          //     for (let i = 0; i < bata.length; i++) {
 
-                this.state.shoes[i].image = bata[i];
-              }
-              this.setState({
-                forceRerender: this.state.forceRerender + 1
-              }, () => {
-                console.log('shoe state:', this.state.shoes)
-              })
-            },
-            error: (err) => {
-              console.log('inner ajax err', err);
-            }
-          })
+          //       this.state.shoes[i].image = bata[i];
+          //     }
+          //     this.setState({
+          //       forceRerender: this.state.forceRerender + 1
+          //     }, () => {
+          //       console.log('shoe state:', this.state.shoes)
+          //     })
+          //   },
+          //   error: (err) => {
+          //     console.log('inner ajax err', err);
+          //   }
+          // })
         })
       },
       error: (err) => {
@@ -55,7 +65,7 @@ class TestComp extends React.Component {
       var items = this.state.shoes.map((elem, i) => {
         return (
           <div className='item' key={i}>
-            <img className='image' src={elem.image}></img>
+            <img className='image' src={this.state.images[i]}></img>
             <span className='elemName'>{elem.name}</span>
             <span className='elemPrice'>{'$' + elem.price}</span>
             <span className='elemType'>{elem.type + ' Shoe'}</span>
